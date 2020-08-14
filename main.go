@@ -100,7 +100,12 @@ func main() {
 		zero, one, two, three, four, five, six, seven, eight, nine,
 	}
 
+	clear()
+	moveTopLeft()
+
 	for {
+		moveTopLeft()
+
 		now := time.Now()
 		hour, min, sec := now.Hour(), now.Minute(), now.Second()
 
@@ -122,4 +127,12 @@ func main() {
 
 		time.Sleep(time.Second)
 	}
+}
+
+func clear() {
+	fmt.Print("\033[2J")
+}
+
+func moveTopLeft() {
+	fmt.Print("\033[H")
 }
