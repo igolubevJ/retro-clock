@@ -88,6 +88,14 @@ func main() {
 		"███",
 	}
 
+	colon := placeholder{
+		"   ",
+		" ░ ",
+		"   ",
+		" ░ ",
+		"   ",
+	}
+
 	digits := [...]placeholder{
 		zero, one, two, three, four, five, six, seven, eight, nine,
 	}
@@ -99,7 +107,9 @@ func main() {
 
 	clock := [...]placeholder{
 		digits[hour/10], digits[hour%10],
+		colon,
 		digits[min/10], digits[min%10],
+		colon,
 		digits[sec/10], digits[sec%10],
 	}
 
