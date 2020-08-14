@@ -118,8 +118,12 @@ func main() {
 		}
 
 		for line := range digits[0] {
-			for digit := range clock {
-				fmt.Print(clock[digit][line], " ")
+			for index, digit := range clock {
+				next := clock[index][line]
+				if digit == colon && sec%2 == 0 {
+					next = "   "
+				}
+				fmt.Print(next, " ")
 			}
 			fmt.Println()
 		}
