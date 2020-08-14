@@ -97,9 +97,15 @@ func main() {
 
 	fmt.Printf("hour: %d, minute: %d, second: %d\n", hour, min, sec)
 
+	clock := [...]placeholder{
+		digits[hour/10], digits[hour%10],
+		digits[min/10], digits[min%10],
+		digits[sec/10], digits[sec%10],
+	}
+
 	for line := range digits[0] {
-		for digit := range digits {
-			fmt.Print(digits[digit][line], " ")
+		for digit := range clock {
+			fmt.Print(clock[digit][line], " ")
 		}
 		fmt.Println()
 	}
