@@ -100,23 +100,43 @@ func main() {
 		zero, one, two, three, four, five, six, seven, eight, nine,
 	}
 
-	now := time.Now()
-	hour, min, sec := now.Hour(), now.Minute(), now.Second()
+	clear()
+	moveTopLeft()
 
-	fmt.Printf("hour: %d, minute: %d, second: %d\n", hour, min, sec)
+	for {
+		moveTopLeft()
 
-	clock := [...]placeholder{
-		digits[hour/10], digits[hour%10],
-		colon,
-		digits[min/10], digits[min%10],
-		colon,
-		digits[sec/10], digits[sec%10],
-	}
+		now := time.Now()
+		hour, min, sec := now.Hour(), now.Minute(), now.Second()
 
-	for line := range digits[0] {
-		for digit := range clock {
-			fmt.Print(clock[digit][line], " ")
+		clock := [...]placeholder{
+			digits[hour/10], digits[hour%10],
+			colon,
+			digits[min/10], digits[min%10],
+			colon,
+			digits[sec/10], digits[sec%10],
+		}
+
+		for line := range digits[0] {
+			for index, digit := range clock {
+				next := clock[index][line]
+				if digit == colon && sec%2 == 0 {
+					next = "   "
+				}
+				fmt.Print(next, " ")
+			}
+			fmt.Println()
 		}
 		fmt.Println()
+
+		time.Sleep(time.Second)
 	}
+}
+
+func clear() {
+	fmt.Print("\033[2J")
+}
+
+func moveTopLeft() {
+	fmt.Print("\033[H")
 }
