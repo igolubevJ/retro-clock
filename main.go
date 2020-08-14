@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"time"
+)
 
 func main() {
 	type placeholder [5]string
@@ -88,6 +91,11 @@ func main() {
 	digits := [...]placeholder{
 		zero, one, two, three, four, five, six, seven, eight, nine,
 	}
+
+	now := time.Now()
+	hour, min, sec := now.Hour(), now.Minute(), now.Second()
+
+	fmt.Printf("hour: %d, minute: %d, second: %d\n", hour, min, sec)
 
 	for line := range digits[0] {
 		for digit := range digits {
